@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: busybox
+  namespace: applications
 spec:
   replicas: 1
   selector:
@@ -15,9 +16,22 @@ spec:
         run: busybox
     spec:
       containers:
+      - env
+        envFrom:
+        - configMapRef:
+            name: busybox
+            optional: false
       - image: busybox
         command:
         - sleep
         - "3602"
         name: busybox
         resources: {}
+---
+apiVersion: v1
+data:
+  LOG_LEVEL: debug
+kind: ConfigMap
+metadata:
+  name: busybox
+  namespace: applications

@@ -1,0 +1,31 @@
+namespace: "applications"
+name: "alertemailenricher"
+hpa:
+  enabled: false
+  replicas:
+    min: 1
+    max: 20
+  target: "alertemailenricher"
+  metric:
+    name: application_alert_enricher_queue_size
+    targetValue: 10
+config:
+  logLevel: "info"
+
+  # Required:
+  # env: dev/rc/prod
+
+  aws:
+    account: "752320408524"
+    region: us-east-1
+
+  service:
+    savedSearch: http://savedsearch.applications/
+    metadata: http://documentmetadata.applications/
+    snippets: http://snippets-alerts.applications/
+    user: http://user-service-v3/
+
+  node:
+    options: "--max_old_space_size=128"
+    env: "production"
+

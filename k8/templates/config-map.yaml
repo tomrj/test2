@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  BUCKET_NAME: "as.{{ .Values.config.env }}.app-alerts"
+  INTEGRATE_WITH_SERVICES: "true"
+
+  LOG_LEVEL: "{{ .Values.config.logLevel }}"
+
+  SOURCE_QUEUE_URL: "https://sqs.{{ .Values.config.aws.region }}.amazonaws.com/{{ .Values.config.aws.account }}/{{ .Values.config.env }}-app-rt-alerts-input"
+  TARGET_QUEUE_URL: "https://sqs.{{ .Values.config.aws.region }}.amazonaws.com/{{ .Values.config.aws.account }}/{{ .Values.config.env }}-app-alerts-enriched"
+
+  METADATA_SERVICE_URL: "{{ .Values.config.service.metadata }}"
+  SAVED_SEARCH_SERVICE_URL: "{{ .Values.config.service.savedSearch }}"
+  SNIPPETS_SERVICE_URL: "{{ .Values.config.service.snippets }}"
+  USER_SERVICE_URL: "{{ .Values.config.service.user }}"
+
+  NODE_ENV: "{{ .Values.config.node.env }}"
+  NODE_OPTIONS: {{ .Values.config.node.options }}
+metadata:
+  name: "{{ .Values.name }}"
+  namespace: "{{ .Values.namespace }}"
+

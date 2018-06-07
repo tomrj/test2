@@ -1,0 +1,18 @@
+{{ if .Values.hpa.enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.service.name }}
+spec:
+  maxReplicas: {{ .Values.hpa.replicas.max }}
+  minReplicas: {{ .Values.hpa.replicas.min }}
+  scaleTargetRef:
+    kind: Deployment
+    name: {{ .Values.hpa.target }}
+  metrics:
+  - type: Pods
+    pods:
+      metricName: {{ .Values.hpa.metric.name }}
+      targetAverageValue: {{ .Values.hpa.metric.targetValue }}
+{{ end }}

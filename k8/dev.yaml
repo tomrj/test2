@@ -1,0 +1,5 @@
+ingress:
+  host: dev3.alpha-sense.com
+config:
+  env: "dev"
+  logLevel: "silly"

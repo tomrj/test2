@@ -1,0 +1,6 @@
+ingress:
+  host: research.alpha-sense.com
+config:
+  env: "prod"
+
+

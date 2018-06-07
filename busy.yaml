@@ -16,17 +16,16 @@ spec:
         run: busybox
     spec:
       containers:
-      - env
-        envFrom:
-        - configMapRef:
-            name: busybox
-            optional: false
       - image: busybox
         command:
         - sleep
         - "3602"
         name: busybox
         resources: {}
+        envFrom:
+        - configMapRef:
+            name: busybox
+            optional: false
 ---
 apiVersion: v1
 data:

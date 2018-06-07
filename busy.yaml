@@ -28,6 +28,7 @@ spec:
 apiVersion: v1
 data:
   LOG_LEVEL: debug
+  TOUCH: "1"
 kind: ConfigMap
 metadata:
   name: mux

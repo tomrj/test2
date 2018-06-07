@@ -14,7 +14,7 @@ spec:
         run: mux
     spec:
       containers:
-      - image: 752320408524.dkr.ecr.us-east-1.amazonaws.com/tjrtest:1
+      - image: 752320408524.dkr.ecr.us-east-1.amazonaws.com/tjrtest
         command:
         - sleep
         - "3602"
